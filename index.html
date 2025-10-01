@@ -1289,7 +1289,7 @@
             
             <!-- Customer Registration Form -->
             <form id="customerRegistration" class="registration-form" style="display: none;">
-                <button type="button" class="back-button" id="backToRoleSelection">
+                <button type="button" class="back-button back-to-role">
                     <i class="fas fa-arrow-left"></i> Back to Role Selection
                 </button>
                 <h3>Customer Registration</h3>
@@ -1318,7 +1318,7 @@
             
             <!-- Service Provider Registration Form -->
             <form id="serviceProviderRegistration" class="registration-form" style="display: none;">
-                <button type="button" class="back-button" id="backToRoleSelection">
+                <button type="button" class="back-button back-to-role">
                     <i class="fas fa-arrow-left"></i> Back to Role Selection
                 </button>
                 <h3>Service Provider Registration</h3>
@@ -1354,7 +1354,7 @@
             
             <!-- Business Owner Registration Form -->
             <form id="businessOwnerRegistration" class="registration-form" style="display: none;">
-                <button type="button" class="back-button" id="backToRoleSelection">
+                <button type="button" class="back-button back-to-role">
                     <i class="fas fa-arrow-left"></i> Back to Role Selection
                 </button>
                 <h3>Business Owner Registration</h3>
@@ -1390,7 +1390,7 @@
             
             <!-- Wholesaler Registration Form -->
             <form id="wholesalerRegistration" class="registration-form" style="display: none;">
-                <button type="button" class="back-button" id="backToRoleSelection">
+                <button type="button" class="back-button back-to-role">
                     <i class="fas fa-arrow-left"></i> Back to Role Selection
                 </button>
                 <h3>Wholesaler Registration</h3>
@@ -1428,138 +1428,138 @@
 
     <!-- Notification -->
     <div class="notification" id="notification"></div>
-
-    <script>
-        // DOM Elements
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
-        const heroRegisterBtn = document.getElementById('heroRegisterBtn');
-        const ctaRegisterBtn = document.getElementById('ctaRegisterBtn');
-        const loginModal = document.getElementById('loginModal');
-        const registerModal = document.getElementById('registerModal');
-        const closeModalButtons = document.querySelectorAll('.close-modal');
-        const roleOptions = document.querySelectorAll('.role-option');
-        const backToRoleSelection = document.getElementById('backToRoleSelection');
-        const notification = document.getElementById('notification');
-        
-        // Testimonial Carousel
-        const carousel = document.getElementById('testimonialCarousel');
-        const carouselDots = document.querySelectorAll('.carousel-dot');
-        let currentSlide = 0;
-        
-        // Open Login Modal
-        loginBtn.addEventListener('click', () => {
-            loginModal.classList.add('active');
+<script>
+    // DOM Elements
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const heroRegisterBtn = document.getElementById('heroRegisterBtn');
+    const ctaRegisterBtn = document.getElementById('ctaRegisterBtn');
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeModalButtons = document.querySelectorAll('.close-modal');
+    const roleOptions = document.querySelectorAll('.role-option');
+    const backToRoleButtons = document.querySelectorAll('.back-to-role');
+    const notification = document.getElementById('notification');
+    
+    // Testimonial Carousel
+    const carousel = document.getElementById('testimonialCarousel');
+    const carouselDots = document.querySelectorAll('.carousel-dot');
+    let currentSlide = 0;
+    
+    // Open Login Modal
+    loginBtn.addEventListener('click', () => {
+        loginModal.classList.add('active');
+    });
+    
+    // Open Register Modal
+    registerBtn.addEventListener('click', () => {
+        registerModal.classList.add('active');
+        showRoleSelection();
+    });
+    
+    // Open Register Modal from Hero CTA
+    heroRegisterBtn.addEventListener('click', () => {
+        registerModal.classList.add('active');
+        showRoleSelection();
+    });
+    
+    // Open Register Modal from CTA Section
+    ctaRegisterBtn.addEventListener('click', () => {
+        registerModal.classList.add('active');
+        showRoleSelection();
+    });
+    
+    // Close Modals
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+            registerModal.classList.remove('active');
         });
-        
-        // Open Register Modal
-        registerBtn.addEventListener('click', () => {
-            registerModal.classList.add('active');
-            showRoleSelection();
-        });
-        
-        // Open Register Modal from Hero CTA
-        heroRegisterBtn.addEventListener('click', () => {
-            registerModal.classList.add('active');
-            showRoleSelection();
-        });
-        
-        // Open Register Modal from CTA Section
-        ctaRegisterBtn.addEventListener('click', () => {
-            registerModal.classList.add('active');
-            showRoleSelection();
-        });
-        
-        // Close Modals
-        closeModalButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                loginModal.classList.remove('active');
-                registerModal.classList.remove('active');
-            });
-        });
-        
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.classList.remove('active');
-            }
-            if (e.target === registerModal) {
-                registerModal.classList.remove('active');
-            }
-        });
-        
-        // Role Selection in Registration
-        roleOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                // Remove selected class from all options
-                roleOptions.forEach(opt => opt.classList.remove('selected'));
-                // Add selected class to clicked option
-                option.classList.add('selected');
-                
-                const role = option.getAttribute('data-role');
-                showRegistrationForm(role);
-            });
-        });
-        
-        // Show Role Selection in Registration Modal
-        function showRoleSelection() {
-            document.getElementById('roleSelection').style.display = 'block';
-            const registrationForms = document.querySelectorAll('.registration-form');
-            registrationForms.forEach(form => {
-                form.style.display = 'none';
-            });
-            
-            // Reset selected classes
+    });
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.classList.remove('active');
+        }
+        if (e.target === registerModal) {
+            registerModal.classList.remove('active');
+        }
+    });
+    
+    // Role Selection in Registration
+    roleOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            // Remove selected class from all options
             roleOptions.forEach(opt => opt.classList.remove('selected'));
-        }
-        
-        // Show Specific Registration Form Based on Role
-        function showRegistrationForm(role) {
-            document.getElementById('roleSelection').style.display = 'none';
+            // Add selected class to clicked option
+            option.classList.add('selected');
             
-            const registrationForms = document.querySelectorAll('.registration-form');
-            registrationForms.forEach(form => {
-                form.style.display = 'none';
-            });
-            
-            switch(role) {
-                case 'customer':
-                    document.getElementById('customerRegistration').style.display = 'block';
-                    break;
-                case 'service-provider':
-                    document.getElementById('serviceProviderRegistration').style.display = 'block';
-                    break;
-                case 'business-owner':
-                    document.getElementById('businessOwnerRegistration').style.display = 'block';
-                    break;
-                case 'wholesaler':
-                    document.getElementById('wholesalerRegistration').style.display = 'block';
-                    break;
-            }
-        }
-        
-        // Back button functionality
-        document.querySelectorAll('.back-button').forEach(button => {
-            button.addEventListener('click', () => {
-                showRoleSelection();
-            });
+            const role = option.getAttribute('data-role');
+            showRegistrationForm(role);
+        });
+    });
+    
+    // Show Role Selection in Registration Modal
+    function showRoleSelection() {
+        document.getElementById('roleSelection').style.display = 'block';
+        const registrationForms = document.querySelectorAll('.registration-form');
+        registrationForms.forEach(form => {
+            form.style.display = 'none';
         });
         
-        // Form Submissions
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const selectedRole = document.querySelector('.role-option.selected');
-            if (!selectedRole) {
-                showNotification('Please select your role', 'error');
-                return;
-            }
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const role = selectedRole.getAttribute('data-role');
-            
+        // Reset selected classes
+        roleOptions.forEach(opt => opt.classList.remove('selected'));
+    }
+    
+    // Show Specific Registration Form Based on Role
+    function showRegistrationForm(role) {
+        document.getElementById('roleSelection').style.display = 'none';
+        
+        const registrationForms = document.querySelectorAll('.registration-form');
+        registrationForms.forEach(form => {
+            form.style.display = 'none';
+        });
+        
+        switch(role) {
+            case 'customer':
+                document.getElementById('customerRegistration').style.display = 'block';
+                break;
+            case 'service-provider':
+                document.getElementById('serviceProviderRegistration').style.display = 'block';
+                break;
+            case 'business-owner':
+                document.getElementById('businessOwnerRegistration').style.display = 'block';
+                break;
+            case 'wholesaler':
+                document.getElementById('wholesalerRegistration').style.display = 'block';
+                break;
+        }
+    }
+    
+    // Back button functionality
+    backToRoleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            showRoleSelection();
+        });
+    });
+    
+    // Form Submissions
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const selectedRole = document.querySelector('.role-option.selected');
+        if (!selectedRole) {
+            showNotification('Please select your role', 'error');
+            return;
+        }
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const role = selectedRole.getAttribute('data-role');
+        
+        try {
             // API call to backend
-            fetch('/api/auth/login', {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1569,130 +1569,185 @@
                     password,
                     role
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    showNotification('Login successful! Redirecting...', 'success');
-                    setTimeout(() => {
-                        loginModal.classList.remove('active');
-                        // Redirect based on role
-                        window.location.href = `/dashboard/${role}`;
-                    }, 2000);
-                } else {
-                    showNotification(data.message || 'Login failed. Please try again.', 'error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showNotification('An error occurred. Please try again.', 'error');
             });
-        });
-        
-        // Registration Form Submissions
-        document.querySelectorAll('.registration-form').forEach(form => {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData);
-                
-                // Determine role from form ID
-                let role = '';
-                if (form.id === 'customerRegistration') role = 'customer';
-                else if (form.id === 'serviceProviderRegistration') role = 'service-provider';
-                else if (form.id === 'businessOwnerRegistration') role = 'business-owner';
-                else if (form.id === 'wholesalerRegistration') role = 'wholesaler';
-                
-                // API call to backend
-                fetch('/api/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        ...data,
-                        role
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showNotification('Registration successful! Welcome to Commerce360.', 'success');
-                        setTimeout(() => {
-                            registerModal.classList.remove('active');
-                            // Redirect based on role
-                            window.location.href = `/dashboard/${role}`;
-                        }, 2000);
-                    } else {
-                        showNotification(data.message || 'Registration failed. Please try again.', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showNotification('An error occurred. Please try again.', 'error');
-                });
-            });
-        });
-        
-        // Testimonial Carousel Functionality
-        function showSlide(n) {
-            currentSlide = n;
-            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
             
-            // Update dots
-            carouselDots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
+            const data = await response.json();
+            
+            if (data.success) {
+                showNotification('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    loginModal.classList.remove('active');
+                    // Redirect based on role
+                    window.location.href = `/dashboard/${role}`;
+                }, 2000);
+            } else {
+                showNotification(data.message || 'Login failed. Please try again.', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('An error occurred. Please try again.', 'error');
         }
+    });
+    
+    // Registration Form Submissions - SIMPLIFIED VERSION
+    document.getElementById('customerRegistration').addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        // Initialize carousel dots
+        const formData = {
+            name: document.getElementById('customerName').value,
+            email: document.getElementById('customerEmail').value,
+            password: document.getElementById('customerPassword').value,
+            role: 'customer',
+            phone: document.getElementById('customerPhone').value,
+            location: document.getElementById('customerLocation').value
+        };
+        
+        await submitRegistration(formData);
+    });
+    
+    document.getElementById('serviceProviderRegistration').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('providerName').value,
+            email: document.getElementById('providerEmail').value,
+            password: document.getElementById('providerPassword').value,
+            role: 'service-provider',
+            businessName: document.getElementById('providerName').value,
+            serviceCategory: document.getElementById('providerService').value
+        };
+        
+        await submitRegistration(formData);
+    });
+    
+    document.getElementById('businessOwnerRegistration').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('businessName').value,
+            email: document.getElementById('businessEmail').value,
+            password: document.getElementById('businessPassword').value,
+            role: 'business-owner',
+            businessName: document.getElementById('businessName').value,
+            businessType: document.getElementById('businessType').value,
+            businessAddress: document.getElementById('businessAddress').value
+        };
+        
+        await submitRegistration(formData);
+    });
+    
+    document.getElementById('wholesalerRegistration').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = {
+            name: document.getElementById('wholesalerName').value,
+            email: document.getElementById('wholesalerEmail').value,
+            password: document.getElementById('wholesalerPassword').value,
+            role: 'wholesaler',
+            businessName: document.getElementById('wholesalerName').value,
+            productCategory: document.getElementById('wholesalerCategory').value
+        };
+        
+        await submitRegistration(formData);
+    });
+    
+    // Unified registration function
+    async function submitRegistration(formData) {
+        try {
+            console.log('Sending registration data:', formData);
+            
+            // Validate required fields
+            if (!formData.name || !formData.email || !formData.password) {
+                showNotification('Please fill in all required fields', 'error');
+                return;
+            }
+            
+            // API call to backend
+            const response = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            const result = await response.json();
+            console.log('Registration response:', result);
+            
+            if (result.success) {
+                showNotification('Registration successful! Welcome to Commerce360.', 'success');
+                setTimeout(() => {
+                    registerModal.classList.remove('active');
+                    // Redirect based on role
+                    window.location.href = `/dashboard/${formData.role}`;
+                }, 2000);
+            } else {
+                showNotification(result.message || 'Registration failed. Please try again.', 'error');
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            showNotification('An error occurred. Please try again.', 'error');
+        }
+    }
+    
+    // Testimonial Carousel Functionality
+    function showSlide(n) {
+        currentSlide = n;
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Update dots
         carouselDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-            });
+            dot.classList.toggle('active', index === currentSlide);
         });
+    }
+    
+    // Initialize carousel dots
+    carouselDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Auto-advance carousel
+    setInterval(() => {
+        currentSlide = (currentSlide + 1) % carouselDots.length;
+        showSlide(currentSlide);
+    }, 5000);
+    
+    // Show Notification
+    function showNotification(message, type) {
+        notification.textContent = message;
+        notification.className = `notification ${type} show`;
         
-        // Auto-advance carousel
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % carouselDots.length;
-            showSlide(currentSlide);
-        }, 5000);
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Add some animation on scroll
+    window.addEventListener('scroll', () => {
+        const elements = document.querySelectorAll('.feature-card, .role-card');
         
-        // Show Notification
-        function showNotification(message, type) {
-            notification.textContent = message;
-            notification.className = `notification ${type} show`;
+        elements.forEach(element => {
+            const position = element.getBoundingClientRect();
             
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Add some animation on scroll
-        window.addEventListener('scroll', () => {
-            const elements = document.querySelectorAll('.feature-card, .role-card');
-            
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                
-                // If element is in viewport
-                if (position.top < window.innerHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
+            // If element is in viewport
+            if (position.top < window.innerHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
         });
-        
-        // Initialize elements with initial styles for animation
-        document.querySelectorAll('.feature-card, .role-card').forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        });
-        
-        // Trigger scroll event once to check initial positions
-        window.dispatchEvent(new Event('scroll'));
-    </script>
+    });
+    
+    // Initialize elements with initial styles for animation
+    document.querySelectorAll('.feature-card, .role-card').forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    // Trigger scroll event once to check initial positions
+    window.dispatchEvent(new Event('scroll'));
+</script>
 </body>
 </html>
