@@ -8,17 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #e25822;
-            --primary-dark: #c44a1c;
-            --secondary: #ffc107;
-            --accent: #009688;
-            --dark: #1a1a2e;
-            --light: #f5f5f5;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #f59e0b;
+            --accent: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
             --gray: #64748b;
-            --success: #00c853;
-            --error: #ff5252;
+            --success: #10b981;
+            --error: #ef4444;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --gradient: linear-gradient(135deg, var(--primary), var(--accent));
+            --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -29,27 +31,24 @@
         }
 
         body {
-            background-color: white;
-            color: var(--light);
+            background-color: #f8fafc;
+            color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(226, 88, 34, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(0, 150, 136, 0.1) 0%, transparent 20%);
         }
 
         /* Header Styles */
         header {
-            background: rgba(26, 26, 46, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(15px);
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .header-container {
@@ -66,32 +65,28 @@
             align-items: center;
             gap: 12px;
             font-weight: 800;
-            font-size: 2rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(226, 88, 34, 0.3);
+            font-size: 1.8rem;
+            color: var(--primary);
         }
 
         .logo-icon {
-            background: var(--gradient);
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 800;
-            transform: rotate(15deg);
-            box-shadow: 0 5px 15px rgba(226, 88, 34, 0.4);
+            background: var(--gradient);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
             animation: pulse 3s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: rotate(15deg) scale(1); }
-            50% { transform: rotate(15deg) scale(1.05); }
-            100% { transform: rotate(15deg) scale(1); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         .auth-buttons {
@@ -128,14 +123,14 @@
 
         .btn-login {
             background: transparent;
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .btn-login:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.03);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--card-shadow);
         }
 
         .btn-register {
@@ -145,29 +140,15 @@
 
         .btn-register:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(226, 88, 34, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
         /* Hero Section */
         .hero {
             padding: 180px 0 120px;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(40, 40, 70, 0.8) 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             position: relative;
             overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            z-index: -1;
         }
 
         .hero-container {
@@ -181,19 +162,16 @@
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: var(--dark);
         }
 
         .hero-content p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            color: var(--gray);
             margin-bottom: 2.5rem;
             line-height: 1.7;
         }
@@ -212,27 +190,27 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 10px 25px rgba(226, 88, 34, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(226, 88, 34, 0.5);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
         }
 
         .btn-secondary {
             background: transparent;
-            color: var(--light);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--dark);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             padding: 15px 35px;
             border-radius: 10px;
             font-weight: 600;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.03);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--card-shadow);
         }
 
         .hero-image {
@@ -243,8 +221,8 @@
         .hero-image img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--hover-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .floating-elements {
@@ -257,16 +235,16 @@
 
         .floating-element {
             position: absolute;
-            width: 80px;
-            height: 80px;
-            background: var(--gradient);
+            width: 70px;
+            height: 70px;
+            background: white;
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--primary);
             font-size: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--card-shadow);
             animation: float-element 10s ease-in-out infinite;
         }
 
@@ -303,7 +281,7 @@
         /* Features Section */
         .features {
             padding: 120px 0;
-            background: rgba(30, 30, 50, 0.7);
+            background: white;
             position: relative;
         }
 
@@ -313,17 +291,15 @@
         }
 
         .section-title h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--dark);
         }
 
         .section-title p {
             font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
         }
@@ -338,14 +314,13 @@
         }
 
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
             border-radius: 20px;
             padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--card-shadow);
             transition: var(--transition);
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
         }
@@ -362,8 +337,7 @@
 
         .feature-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--hover-shadow);
         }
 
         .feature-icon {
@@ -377,39 +351,25 @@
             margin: 0 auto 25px;
             color: white;
             font-size: 2.2rem;
-            box-shadow: 0 10px 25px rgba(226, 88, 34, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
         .feature-card h3 {
             font-size: 1.6rem;
             margin-bottom: 20px;
-            color: var(--light);
+            color: var(--dark);
         }
 
         .feature-card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             line-height: 1.7;
         }
 
         /* User Roles Section */
         .user-roles {
             padding: 120px 0;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(40, 40, 70, 0.8) 100%);
+            background: #f8fafc;
             position: relative;
-        }
-
-        .user-roles::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            z-index: -1;
         }
 
         .roles-container {
@@ -425,22 +385,20 @@
         }
 
         .role-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--card-shadow);
             transition: var(--transition);
             border-top: 5px solid var(--primary);
-            backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
         }
 
         .role-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--hover-shadow);
         }
 
         .role-icon {
@@ -454,17 +412,17 @@
             margin: 0 auto 25px;
             color: white;
             font-size: 1.8rem;
-            box-shadow: 0 10px 25px rgba(226, 88, 34, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
         }
 
         .role-card h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--light);
+            color: var(--dark);
         }
 
         .role-card p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             margin-bottom: 30px;
             line-height: 1.7;
         }
@@ -477,7 +435,7 @@
         /* Testimonials Carousel */
         .testimonials {
             padding: 120px 0;
-            background: rgba(30, 30, 50, 0.7);
+            background: white;
         }
 
         .carousel-container {
@@ -491,10 +449,9 @@
             display: flex;
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--card-shadow);
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .carousel-slide {
@@ -512,7 +469,7 @@
             font-size: 1.3rem;
             font-style: italic;
             margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
             line-height: 1.8;
         }
 
@@ -534,18 +491,19 @@
             color: white;
             font-weight: 700;
             font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .author-info h4 {
             font-weight: 700;
             margin-bottom: 5px;
             font-size: 1.2rem;
+            color: var(--dark);
         }
 
         .author-info p {
             font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
         }
 
         .carousel-controls {
@@ -559,7 +517,7 @@
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: var(--transition);
         }
@@ -567,7 +525,7 @@
         .carousel-dot.active {
             background: var(--primary);
             transform: scale(1.3);
-            box-shadow: 0 0 10px rgba(226, 88, 34, 0.7);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
         }
 
         /* CTA Section */
@@ -580,20 +538,6 @@
             overflow: hidden;
         }
 
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            z-index: 0;
-        }
-
         .cta-container {
             max-width: 900px;
             margin: 0 auto;
@@ -603,7 +547,7 @@
         }
 
         .cta h2 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
         }
@@ -632,7 +576,7 @@
         .btn-light:hover {
             background: rgba(255, 255, 255, 0.9);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .btn-outline-light {
@@ -647,12 +591,12 @@
         .btn-outline-light:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         /* Footer */
         footer {
-            background: rgba(20, 20, 35, 0.95);
+            background: var(--dark);
             color: white;
             padding: 80px 0 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -725,7 +669,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1100;
             align-items: center;
             justify-content: center;
@@ -740,16 +684,15 @@
         }
 
         .modal-content {
-            background: rgba(30, 30, 50, 0.95);
+            background: white;
             border-radius: 20px;
             width: 90%;
             max-width: 550px;
             padding: 40px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
             transform: translateY(30px) scale(0.9);
             transition: transform 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -767,11 +710,8 @@
 
         .modal-header h2 {
             font-size: 2rem;
-            color: var(--light);
+            color: var(--dark);
             font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .close-modal {
@@ -779,12 +719,12 @@
             border: none;
             font-size: 1.8rem;
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
             transition: var(--transition);
         }
 
         .close-modal:hover {
-            color: white;
+            color: var(--dark);
             transform: rotate(90deg);
         }
 
@@ -796,25 +736,24 @@
             display: block;
             margin-bottom: 10px;
             font-weight: 600;
-            color: var(--light);
+            color: var(--dark);
         }
 
         .form-control {
             width: 100%;
             padding: 15px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             font-size: 1rem;
             transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
+            background: white;
+            color: var(--dark);
         }
 
         .form-control:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(226, 88, 34, 0.3);
-            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .role-selection {
@@ -826,25 +765,25 @@
 
         .role-option {
             padding: 20px 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 15px;
             text-align: center;
             cursor: pointer;
             transition: var(--transition);
-            background: rgba(255, 255, 255, 0.05);
+            background: white;
         }
 
         .role-option:hover {
             border-color: var(--primary);
-            background: rgba(226, 88, 34, 0.1);
+            background: rgba(37, 99, 235, 0.05);
             transform: translateY(-5px);
         }
 
         .role-option.selected {
             border-color: var(--primary);
-            background: rgba(226, 88, 34, 0.2);
+            background: rgba(37, 99, 235, 0.1);
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(226, 88, 34, 0.3);
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
         }
 
         .role-option i {
@@ -856,12 +795,29 @@
         .role-option h4 {
             font-size: 1.1rem;
             margin-bottom: 5px;
-            color: var(--light);
+            color: var(--dark);
         }
 
         .role-option p {
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--gray);
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            color: var(--primary-dark);
         }
 
         /* Notification Styles */
@@ -874,7 +830,7 @@
             color: white;
             font-weight: 600;
             z-index: 1200;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             transform: translateX(400px);
             transition: transform 0.4s ease;
             backdrop-filter: blur(10px);
@@ -887,21 +843,21 @@
         }
 
         .notification.success {
-            background: rgba(0, 200, 83, 0.9);
+            background: rgba(16, 185, 129, 0.9);
         }
 
         .notification.error {
-            background: rgba(255, 82, 82, 0.9);
+            background: rgba(239, 68, 68, 0.9);
         }
 
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .hero-content h1 {
-                font-size: 3.2rem;
+                font-size: 2.8rem;
             }
             
             .section-title h2 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
         }
 
@@ -913,7 +869,7 @@
             }
             
             .hero-content h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
             
             .hero-buttons {
@@ -931,7 +887,7 @@
             }
             
             .logo {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             
             .logo-icon {
@@ -944,7 +900,7 @@
             }
             
             .hero-content h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .hero-content p {
@@ -952,7 +908,7 @@
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .section-title p {
@@ -964,7 +920,7 @@
             }
             
             .cta h2 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
             .cta p {
@@ -1333,6 +1289,9 @@
             
             <!-- Customer Registration Form -->
             <form id="customerRegistration" class="registration-form" style="display: none;">
+                <button type="button" class="back-button" id="backToRoleSelection">
+                    <i class="fas fa-arrow-left"></i> Back to Role Selection
+                </button>
                 <h3>Customer Registration</h3>
                 <div class="form-group">
                     <label for="customerName">Full Name</label>
@@ -1354,27 +1313,14 @@
                     <label for="customerLocation">Location</label>
                     <input type="text" id="customerLocation" class="form-control" placeholder="Enter your city">
                 </div>
-                <div class="form-group">
-                    <label for="customerInterests">Service Interests</label>
-                    <select id="customerInterests" class="form-control" multiple>
-                        <option value="home-services">Home Services</option>
-                        <option value="professional">Professional Services</option>
-                        <option value="events">Events & Entertainment</option>
-                        <option value="health">Health & Wellness</option>
-                        <option value="education">Education</option>
-                    </select>
-                    <small>Hold Ctrl to select multiple options</small>
-                </div>
-                <div class="form-group">
-                    <label for="customerNotifications">
-                        <input type="checkbox" id="customerNotifications"> Receive notifications about new services
-                    </label>
-                </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
             </form>
             
             <!-- Service Provider Registration Form -->
             <form id="serviceProviderRegistration" class="registration-form" style="display: none;">
+                <button type="button" class="back-button" id="backToRoleSelection">
+                    <i class="fas fa-arrow-left"></i> Back to Role Selection
+                </button>
                 <h3>Service Provider Registration</h3>
                 <div class="form-group">
                     <label for="providerName">Business Name</label>
@@ -1403,30 +1349,14 @@
                     <label for="providerDescription">Service Description</label>
                     <textarea id="providerDescription" class="form-control" placeholder="Describe your services" rows="3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="providerLicense">Business License Number</label>
-                    <input type="text" id="providerLicense" class="form-control" placeholder="Enter your license number if applicable">
-                </div>
-                <div class="form-group">
-                    <label for="providerRegions">Service Regions</label>
-                    <select id="providerRegions" class="form-control" multiple>
-                        <option value="west-africa">West Africa</option>
-                        <option value="east-africa">East Africa</option>
-                        <option value="southern-africa">Southern Africa</option>
-                        <option value="central-africa">Central Africa</option>
-                        <option value="north-africa">North Africa</option>
-                    </select>
-                    <small>Hold Ctrl to select multiple regions</small>
-                </div>
-                <div class="form-group">
-                    <label for="providerExperience">Years of Experience</label>
-                    <input type="number" id="providerExperience" class="form-control" placeholder="Enter years of experience">
-                </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
             </form>
             
             <!-- Business Owner Registration Form -->
             <form id="businessOwnerRegistration" class="registration-form" style="display: none;">
+                <button type="button" class="back-button" id="backToRoleSelection">
+                    <i class="fas fa-arrow-left"></i> Back to Role Selection
+                </button>
                 <h3>Business Owner Registration</h3>
                 <div class="form-group">
                     <label for="businessName">Business Name</label>
@@ -1455,35 +1385,14 @@
                     <label for="businessAddress">Business Address</label>
                     <input type="text" id="businessAddress" class="form-control" placeholder="Enter your business address" required>
                 </div>
-                <div class="form-group">
-                    <label for="businessTaxId">Tax ID / EIN</label>
-                    <input type="text" id="businessTaxId" class="form-control" placeholder="Enter your tax ID">
-                </div>
-                <div class="form-group">
-                    <label for="businessEmployees">Number of Employees</label>
-                    <select id="businessEmployees" class="form-control">
-                        <option value="1-10">1-10</option>
-                        <option value="11-50">11-50</option>
-                        <option value="51-200">51-200</option>
-                        <option value="201-500">201-500</option>
-                        <option value="500+">500+</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="businessAnnualRevenue">Annual Revenue (USD)</label>
-                    <select id="businessAnnualRevenue" class="form-control">
-                        <option value="0-50k">$0 - $50,000</option>
-                        <option value="50k-100k">$50,000 - $100,000</option>
-                        <option value="100k-500k">$100,000 - $500,000</option>
-                        <option value="500k-1m">$500,000 - $1,000,000</option>
-                        <option value="1m+">$1,000,000+</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
             </form>
             
             <!-- Wholesaler Registration Form -->
             <form id="wholesalerRegistration" class="registration-form" style="display: none;">
+                <button type="button" class="back-button" id="backToRoleSelection">
+                    <i class="fas fa-arrow-left"></i> Back to Role Selection
+                </button>
                 <h3>Wholesaler Registration</h3>
                 <div class="form-group">
                     <label for="wholesalerName">Company Name</label>
@@ -1512,31 +1421,6 @@
                     <label for="wholesalerDescription">Product Description</label>
                     <textarea id="wholesalerDescription" class="form-control" placeholder="Describe your products" rows="3"></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="wholesalerMinOrder">Minimum Order Value (USD)</label>
-                    <input type="number" id="wholesalerMinOrder" class="form-control" placeholder="Enter minimum order value">
-                </div>
-                <div class="form-group">
-                    <label for="wholesalerRegions">Supply Regions</label>
-                    <select id="wholesalerRegions" class="form-control" multiple>
-                        <option value="west-africa">West Africa</option>
-                        <option value="east-africa">East Africa</option>
-                        <option value="southern-africa">Southern Africa</option>
-                        <option value="central-africa">Central Africa</option>
-                        <option value="north-africa">North Africa</option>
-                        <option value="pan-african">Pan-African</option>
-                    </select>
-                    <small>Hold Ctrl to select multiple regions</small>
-                </div>
-                <div class="form-group">
-                    <label for="wholesalerDelivery">Delivery Options</label>
-                    <div>
-                        <label><input type="checkbox" name="delivery" value="pickup"> Customer Pickup</label>
-                        <label><input type="checkbox" name="delivery" value="local"> Local Delivery</label>
-                        <label><input type="checkbox" name="delivery" value="regional"> Regional Delivery</label>
-                        <label><input type="checkbox" name="delivery" value="international"> International Delivery</label>
-                    </div>
-                </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
             </form>
         </div>
@@ -1555,6 +1439,7 @@
         const registerModal = document.getElementById('registerModal');
         const closeModalButtons = document.querySelectorAll('.close-modal');
         const roleOptions = document.querySelectorAll('.role-option');
+        const backToRoleSelection = document.getElementById('backToRoleSelection');
         const notification = document.getElementById('notification');
         
         // Testimonial Carousel
@@ -1653,6 +1538,13 @@
             }
         }
         
+        // Back button functionality
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.addEventListener('click', () => {
+                showRoleSelection();
+            });
+        });
+        
         // Form Submissions
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1662,22 +1554,84 @@
                 return;
             }
             
-            // In a real app, you would send this data to your backend
-            showNotification('Login successful! Redirecting...', 'success');
-            setTimeout(() => {
-                loginModal.classList.remove('active');
-            }, 2000);
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const role = selectedRole.getAttribute('data-role');
+            
+            // API call to backend
+            fetch('/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                    role
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        loginModal.classList.remove('active');
+                        // Redirect based on role
+                        window.location.href = `/dashboard/${role}`;
+                    }, 2000);
+                } else {
+                    showNotification(data.message || 'Login failed. Please try again.', 'error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('An error occurred. Please try again.', 'error');
+            });
         });
         
         // Registration Form Submissions
         document.querySelectorAll('.registration-form').forEach(form => {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                // In a real app, you would send this data to your backend
-                showNotification('Registration successful! Welcome to Commerce360.', 'success');
-                setTimeout(() => {
-                    registerModal.classList.remove('active');
-                }, 2000);
+                
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Determine role from form ID
+                let role = '';
+                if (form.id === 'customerRegistration') role = 'customer';
+                else if (form.id === 'serviceProviderRegistration') role = 'service-provider';
+                else if (form.id === 'businessOwnerRegistration') role = 'business-owner';
+                else if (form.id === 'wholesalerRegistration') role = 'wholesaler';
+                
+                // API call to backend
+                fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        ...data,
+                        role
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification('Registration successful! Welcome to Commerce360.', 'success');
+                        setTimeout(() => {
+                            registerModal.classList.remove('active');
+                            // Redirect based on role
+                            window.location.href = `/dashboard/${role}`;
+                        }, 2000);
+                    } else {
+                        showNotification(data.message || 'Registration failed. Please try again.', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('An error occurred. Please try again.', 'error');
+                });
             });
         });
         
