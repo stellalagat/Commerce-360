@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Commerce360 — All businesses. One platform.</title>
+  <meta name="description" content="Commerce360 — unified marketplace for customers, service providers, business owners and wholesalers. Book services, manage supply and scale."/>
+  <style>
+    /* -------------------------
+       Base / Reset
+       ------------------------- */
+    :root{
+      --bg:#0f1724;
+      --card:#ffffff;
+      --muted:#94a3b8;
+      --accent1:#6366f1; /* indigo */
+      --accent2:#06b6d4; /* cyan */
+      --glass: rgba(255,255,255,0.06);
+      --glass-2: rgba(255,255,255,0.04);
+      --success:#16a34a;
+      --danger:#dc2626;
+      --maxw:1200px;
+      --radius:14px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body,#app{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#071029 0%, #07121a 45%, #071827 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding-bottom:60px;
+    }
+    a{color:inherit}
+    .container{max-width:var(--maxw);margin:0 auto;padding:32px}
+    .flex{display:flex} .items-center{align-items:center} .justify-center{justify-content:center}
+    .gap-12{gap:12px} .gap-6{gap:6px}
+
+    /* -------------------------
+       Header
+       ------------------------- */
+    header {
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      position:sticky; top:0; z-index:60;
+    }
+    .header-inner{display:flex;align-items:center;justify-content:space-between;max-width:var(--maxw);margin:0 auto;padding:18px 32px;}
+    .logo-row{display:flex;align-items:center;gap:12px}
+    .brand-title{font-weight:700;font-size:18px;letter-spacing:0.2px}
+    .brand-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;font-weight:600;
+      cursor:pointer; user-select:none;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--accent1), #7c3aed);color:white;box-shadow:0 6px 18px rgba(99,102,241,0.14)}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .small{font-size:13px;padding:8px 12px;border-radius:8px}
+
+    /* -------------------------
+       Hero & layout
+       ------------------------- */
+    .hero{display:grid;grid-template-columns:1fr;gap:30px;padding:48px 32px}
+    @media(min-width:980px){.hero{grid-template-columns: 1fr 540px;align-items:center}}
+    .hero-left h1{font-size:38px;margin:0;line-height:1.05}
+    @media(min-width:980px){.hero-left h1{font-size:46px}}
+    .hero-lead{color:var(--muted);margin-top:14px;font-size:16px;max-width:60ch}
+    .cta-row{margin-top:22px;display:flex;gap:12px}
+
+    .role-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}
+    .role-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);font-size:14px}
+    .role-card .label{font-weight:700;margin-bottom:6px}
+
+    /* -------------------------
+       Carousel
+       ------------------------- */
+    .carousel{position:relative;border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);}
+    .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:translateY(6px);transition:opacity .9s ease, transform .9s ease;display:flex;align-items:flex-end;padding:28px}
+    .slide.show{opacity:1;transform:none}
+    .slide .overlay{background:linear-gradient(90deg, rgba(2,6,23,0.7), rgba(2,6,23,0.2));padding:18px;border-radius:10px;color:white;max-width:80%}
+    .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;display:flex;gap:8px}
+    .dot{width:10px;height:10px;border-radius:999px;background:rgba(255,255,255,0.25);cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+    .dot.active{background:white}
+
+    /* -------------------------
+       Features / Marketing
+       ------------------------- */
+    .grid-3{display:grid;grid-template-columns:1fr;gap:16px;margin-top:36px}
+    @media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+    .feature-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);min-height:120px}
+    .feature-card h4{margin:0 0 8px 0}
+    .marketing{display:flex;gap:20px;align-items:center;margin-top:18px;padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(99,102,241,0.06), rgba(6,182,212,0.03));border:1px solid rgba(255,255,255,0.02)}
+    .marketing img{width:220px;border-radius:10px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+
+    /* -------------------------
+       Footer
+       ------------------------- */
+    footer{margin-top:36px;padding:26px 32px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+    .footer-grid{display:flex;flex-direction:column;gap:18px}
+    @media(min-width:720px){.footer-grid{flex-direction:row;justify-content:space-between;align-items:center}}
+
+    /* -------------------------
+       Modals
+       ------------------------- */
+    .backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:flex;align-items:center;justify-content:center;z-index:120}
+    .modal{width:96%;max-width:720px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 30px 80px rgba(2,6,23,0.7)}
+    .modal h3{margin:0 0 8px 0}
+    .form-row{display:flex;gap:10px}
+    .form-field{display:flex;flex-direction:column;margin-bottom:10px}
+    .form-field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .form-field input, .form-field select, .form-field textarea{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit;font-size:14px;
+    }
+    .modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+
+    /* role buttons in modals */
+    .role-btn{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
+    .role-btn:hover{background:rgba(255,255,255,0.02)}
+
+    /* -------------------------
+       Toasts
+       ------------------------- */
+    .toasts{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:10px;z-index:150}
+    .toast{padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);min-width:220px;box-shadow:0 6px 22px rgba(2,6,23,0.6);font-size:14px}
+    .toast.success{border-color:rgba(16,185,129,0.12);background:linear-gradient(180deg, rgba(16,185,129,0.06), rgba(16,185,129,0.02))}
+    .toast.error{border-color:rgba(239,68,68,0.12);background:linear-gradient(180deg, rgba(239,68,68,0.06), rgba(239,68,68,0.02))}
+
+    /* subtle animated accent */
+    .glow {
+      position: absolute; right:-60px; top:-40px; width:320px; height:320px; filter:blur(48px);
+      background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.28), rgba(6,182,212,0.12));
+      transform: rotate(12deg); border-radius:999px; z-index:0; pointer-events:none;
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)} .caps{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.04);font-weight:700;background:rgba(255,255,255,0.01)}
+    .center{text-align:center}
+  </style>
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header>
+      <div class="header-inner">
+        <div class="logo-row">
+          <!-- Logo SVG -->
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:12px">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="55" height="55" rx="12" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+              <g transform="translate(7,7)">
+                <rect x="0" y="0" width="42" height="42" rx="10" fill="#4F46E5"/>
+                <g transform="translate(6,6)" fill="#fff" opacity="0.95">
+                  <rect x="0" y="4" width="12" height="3" rx="1.5"/>
+                  <rect x="0" y="14" width="18" height="3" rx="1.5" opacity="0.9"/>
+                  <circle cx="30" cy="8" r="6" fill="#60A5FA"/>
+                </g>
+              </g>
+            </svg>
+          </div>
+
+          <div>
+            <div class="brand-title">Commerce360</div>
+            <div class="brand-sub">All businesses. One platform.</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <button id="loginBtn" class="btn btn-primary small" aria-haspopup="dialog">Login</button>
+          <button id="registerBtn" class="btn btn-ghost small">Register</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Glow accent -->
+    <div class="glow" style="position:fixed;left:12%;top:8%;z-index:0"></div>
+
+    <!-- Hero -->
+    <main class="container hero" role="main" aria-labelledby="main-heading">
+      <section class="hero-left" style="z-index:2">
+        <h1 id="main-heading">Commerce360 — where customers, providers, business owners and wholesalers connect.</h1>
+        <p class="hero-lead">A unified, scalable marketplace and business network: book services, manage wholesale supply, and grow your business from a single dashboard.</p>
+
+        <div class="cta-row">
+          <button id="quickRegister" class="btn btn-primary">Get Started</button>
+          <a href="#features" class="btn btn-ghost">Learn more</a>
+        </div>
+
+        <div class="role-grid" aria-hidden="false">
+          <div class="role-card">
+            <div class="label">For Customers</div>
+            <div class="muted">Search, compare & book local services.</div>
+          </div>
+          <div class="role-card">
+            <div class="label">For Providers</div>
+            <div class="muted">List skills, accept bookings & build trust.</div>
+          </div>
+          <div class="role-card">
+            <div class="label">For Business Owners</div>
+            <div class="muted">Showcase your store, manage orders & customers.</div>
+          </div>
+          <div class="role-card">
+            <div class="label">For Wholesalers</div>
+            <div class="muted">Supply stock to retailers, providers & stores.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Carousel -->
+      <aside class="carousel" aria-label="Marketing carousel" style="height:420px;position:relative">
+        <div class="slide show" data-index="0" style="background-image:url('https://images.unsplash.com/photo-1581091215367-6c8dff7d1d9b?auto=format&fit=crop&w=1400&q=60')">
+          <div class="overlay">
+            <div style="font-weight:700;font-size:20px">Find any service, anytime</div>
+            <div class="muted" style="margin-top:8px;font-size:14px">Customers book skilled service providers near them.</div>
+          </div>
+        </div>
+        <div class="slide" data-index="1" style="background-image:url('https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1400&q=60')">
+          <div class="overlay">
+            <div style="font-weight:700;font-size:20px">Scale your business</div>
+            <div class="muted" style="margin-top:8px;font-size:14px">Business owners reach customers and wholesalers instantly.</div>
+          </div>
+        </div>
+        <div class="slide" data-index="2" style="background-image:url('https://images.unsplash.com/photo-1542224566-6b3b6b4f7f0e?auto=format&fit=crop&w=1400&q=60')">
+          <div class="overlay">
+            <div style="font-weight:700;font-size:20px">Wholesale supply simplified</div>
+            <div class="muted" style="margin-top:8px;font-size:14px">Wholesalers connect with retailers, providers and customers.</div>
+          </div>
+        </div>
+
+        <div class="dots" role="tablist" aria-label="Carousel indicators">
+          <button class="dot active" aria-label="Slide 1" data-dot="0"></button>
+          <button class="dot" aria-label="Slide 2" data-dot="1"></button>
+          <button class="dot" aria-label="Slide 3" data-dot="2"></button>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Features -->
+    <section id="features" class="container" aria-labelledby="features-heading">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:18px">
+        <div>
+          <div class="caps">Platform highlights</div>
+          <h2 style="margin:6px 0 0 0">Built for every role in the commerce chain</h2>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div class="pill">Unified profiles</div>
+          <div class="pill">Secure payments</div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="feature-card">
+          <h4>Unified Profiles</h4>
+          <div class="muted">Single profile supports multiple roles — manage bookings, orders and wholesale supply from one dashboard.</div>
+        </div>
+        <div class="feature-card">
+          <h4>Inventory & Wholesale</h4>
+          <div class="muted">Wholesalers list product lines, set minimum orders and supply business owners and providers across the platform.</div>
+        </div>
+        <div class="feature-card">
+          <h4>Bookings & Payments</h4>
+          <div class="muted">Customers book services, businesses accept orders and wholesalers process supply — with integrated payments & escrow options.</div>
+        </div>
+      </div>
+
+      <div class="marketing" style="margin-top:18px">
+        <div style="flex:1">
+          <h3 style="margin:0">Why Commerce360 matters</h3>
+          <p class="muted" style="margin-top:8px">Commerce360 connects every link in the commerce chain — customer, provider, owner and wholesaler — in a single network. Reduced friction, faster discovery, and better supply flows.</p>
+          <ul style="margin-top:10px;color:var(--muted);font-size:14px;line-height:1.6">
+            <li>• Discover verified local providers</li>
+            <li>• Centralized messaging & booking</li>
+            <li>• Manage wholesale orders and dropship</li>
+            <li>• Performance analytics & growth tools</li>
+          </ul>
+        </div>
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=60" alt="Marketing" />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-grid">
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg width="42" height="42" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="0.5" y="0.5" width="55" height="55" rx="12" fill="#111827" stroke="rgba(255,255,255,0.06)"/>
+            <g transform="translate(7,7)">
+              <rect x="0" y="0" width="42" height="42" rx="10" fill="#4F46E5"/>
+              <g transform="translate(6,6)" fill="#fff" opacity="0.95">
+                <rect x="0" y="4" width="12" height="3" rx="1.5"/>
+                <rect x="0" y="14" width="18" height="3" rx="1.5" opacity="0.9"/>
+                <circle cx="30" cy="8" r="6" fill="#60A5FA"/>
+              </g>
+            </g>
+          </svg>
+          <div>
+            <div style="font-weight:700">Commerce360</div>
+            <div style="font-size:12px;color:var(--muted)">All businesses. One platform.</div>
+          </div>
+        </div>
+
+        <div style="text-align:right" class="muted">
+          <div style="font-weight:700;color:var(--muted)">Contact</div>
+          <div style="margin-top:8px">hello@commerce360.com • +254 700 000 000</div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Toast container -->
+    <div id="toastArea" class="toasts" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- -----------------------
+         Modals (Login & Register)
+         ----------------------- -->
+    <!-- Login Modal -->
+    <div id="loginModal" class="backdrop" style="display:none" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <div class="modal" role="document">
+        <button aria-label="Close login" onclick="closeLogin()" style="float:right;background:transparent;border:0;color:var(--muted);font-size:18px">✕</button>
+        <h3 id="loginTitle">Login to Commerce360</h3>
+        <p class="muted" style="margin-top:6px;font-size:14px">Enter credentials to continue. We'll ask which role you'd like to login as next.</p>
+
+        <form id="loginForm" style="margin-top:12px">
+          <div class="form-field">
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" name="email" type="email" placeholder="you@company.com" autocomplete="email" />
+          </div>
+          <div class="form-field">
+            <label for="loginPassword">Password</label>
+            <input id="loginPassword" name="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+          </div>
+
+          <div id="loginStepRole" style="display:none;margin-top:10px">
+            <div class="muted">Login as:</div>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+              <button type="button" class="role-btn" onclick="completeLogin('customer')">Customer</button>
+              <button type="button" class="role-btn" onclick="completeLogin('provider')">Service Provider</button>
+              <button type="button" class="role-btn" onclick="completeLogin('owner')">Business Owner</button>
+              <button type="button" class="role-btn" onclick="completeLogin('wholesaler')">Wholesaler</button>
+            </div>
+          </div>
+
+          <div class="modal-actions" style="margin-top:12px">
+            <button type="button" class="btn btn-ghost small" onclick="closeLogin()">Cancel</button>
+            <button type="submit" class="btn btn-primary small">Continue</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="backdrop" style="display:none" role="dialog" aria-modal="true" aria-labelledby="registerTitle">
+      <div class="modal" role="document">
+        <button aria-label="Close register" onclick="closeRegister()" style="float:right;background:transparent;border:0;color:var(--muted);font-size:18px">✕</button>
+        <h3 id="registerTitle">Create an account</h3>
+        <p class="muted" style="margin-top:6px;font-size:14px">Choose a role to begin. Each role has tailored fields.</p>
+
+        <div id="chooseRoleArea" style="margin-top:12px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="role-btn" onclick="selectRegisterRole('customer')">Customer</button>
+            <button type="button" class="role-btn" onclick="selectRegisterRole('provider')">Service Provider</button>
+            <button type="button" class="role-btn" onclick="selectRegisterRole('owner')">Business Owner</button>
+            <button type="button" class="role-btn" onclick="selectRegisterRole('wholesaler')">Wholesaler</button>
+          </div>
+        </div>
+
+        <!-- Role-specific form area -->
+        <div id="roleFormArea" style="display:none;margin-top:12px">
+          <div id="roleHeading" style="font-weight:700;margin-bottom:6px">Register as</div>
+          <form id="roleRegisterForm">
+            <div id="roleFields"></div>
+
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+              <button type="button" class="btn btn-ghost small" onclick="backToRoleChoose()">Back</button>
+              <button type="submit" class="btn btn-primary small">Register</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /* -------------------------
+       Carousel logic
+       ------------------------- */
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const dots = Array.from(document.querySelectorAll('.dot'));
+      let idx = 0;
+      let timer = null;
+
+      function show(i){
+        slides.forEach(s => s.classList.remove('show'));
+        dots.forEach(d => d.classList.remove('active'));
+        slides[i].classList.add('show');
+        dots[i].classList.add('active');
+        idx = i;
+      }
+
+      function next(){
+        show((idx+1) % slides.length);
+      }
+
+      dots.forEach(d => d.addEventListener('click', (e)=> {
+        const i = Number(e.currentTarget.dataset.dot);
+        show(i);
+        reset();
+      }));
+
+      function reset(){
+        clearInterval(timer);
+        timer = setInterval(next, 5000);
+      }
+
+      // init
+      show(0);
+      timer = setInterval(next, 5000);
+      // keep timer alive on visibility
+      document.addEventListener('visibilitychange', ()=> {
+        if(document.hidden) clearInterval(timer); else reset();
+      });
+    })();
+
+    /* -------------------------
+       Toasts
+       ------------------------- */
+    function toast(message, type = 'info'){
+      const area = document.getElementById('toastArea');
+      const el = document.createElement('div');
+      el.className = 'toast ' + (type === 'success' ? 'success' : type === 'error' ? 'error' : '');
+      el.textContent = message;
+      area.appendChild(el);
+      setTimeout(()=> {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(8px)';
+      }, 3500);
+      setTimeout(()=> area.removeChild(el), 4200);
+    }
+
+    /* -------------------------
+       Login modal flow
+       ------------------------- */
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const loginForm = document.getElementById('loginForm');
+    const loginStepRole = document.getElementById('loginStepRole');
+
+    loginBtn.addEventListener('click', () => {
+      openLogin();
+    });
+
+    function openLogin(){
+      document.getElementById('loginModal').style.display = 'flex';
+      loginStepRole.style.display = 'none';
+      document.getElementById('loginEmail').focus();
+    }
+    function closeLogin(){
+      document.getElementById('loginModal').style.display = 'none';
+      loginForm.reset();
+      loginStepRole.style.display = 'none';
+    }
+    loginForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPassword').value.trim();
+      if(!email || !pass){
+        toast('Please provide both email and password.', 'error');
+        return;
+      }
+      // Simulate success then ask for role
+      toast('Credentials accepted. Select role to complete login.', 'success');
+      loginStepRole.style.display = 'block';
+    });
+
+    function completeLogin(role){
+      // Here you'd call the server to login and set role-specific session
+      closeLogin();
+      toast('Logged in as ' + role.charAt(0).toUpperCase() + role.slice(1) + '.', 'success');
+    }
+
+    /* -------------------------
+       Register modal & role-specific forms
+       ------------------------- */
+    const registerBtn = document.getElementById('registerBtn');
+    const registerModal = document.getElementById('registerModal');
+    const chooseArea = document.getElementById('chooseRoleArea');
+    const roleFormArea = document.getElementById('roleFormArea');
+    const roleHeading = document.getElementById('roleHeading');
+    const roleFieldsContainer = document.getElementById('roleFields');
+    const roleRegisterForm = document.getElementById('roleRegisterForm');
+
+    registerBtn.addEventListener('click', openRegister);
+    document.getElementById('quickRegister').addEventListener('click', openRegister);
+
+    function openRegister(){
+      registerModal.style.display = 'flex';
+      chooseArea.style.display = 'block';
+      roleFormArea.style.display = 'none';
+    }
+    function closeRegister(){
+      registerModal.style.display = 'none';
+      roleRegisterForm.reset && roleRegisterForm.reset();
+      roleFieldsContainer.innerHTML = '';
+    }
+
+    function selectRegisterRole(role){
+      // define fields per role
+      const config = {
+        customer: [
+          {name:'name', label:'Full name', type:'text', required:true},
+          {name:'email', label:'Email', type:'email', required:true},
+          {name:'phone', label:'Phone (optional)', type:'tel'},
+          {name:'address', label:'Address', type:'text'}
+        ],
+        provider:[
+          {name:'name', label:'Full name', type:'text', required:true},
+          {name:'email', label:'Email', type:'email', required:true},
+          {name:'serviceType', label:'Service Type (e.g., Plumbing)', type:'text', required:true},
+          {name:'experience', label:'Years of experience', type:'number'}
+        ],
+        owner:[
+          {name:'businessName', label:'Business Name', type:'text', required:true},
+          {name:'ownerName', label:\"Owner's full name\", type:'text', required:true},
+          {name:'email', label:'Business email', type:'email', required:true},
+          {name:'category', label:'Business Category', type:'text'}
+        ],
+        wholesaler:[
+          {name:'companyName', label:'Company Name', type:'text', required:true},
+          {name:'contactName', label:'Contact person', type:'text', required:true},
+          {name:'email', label:'Business email', type:'email', required:true},
+          {name:'products', label:'Main product lines', type:'text'},
+          {name:'minOrder', label:'Minimum order value (optional)', type:'number'}
+        ]
+      };
+
+      const fields = config[role] || [];
+      roleFieldsContainer.innerHTML = '';
+      roleHeading.textContent = 'Register as ' + role.charAt(0).toUpperCase() + role.slice(1);
+
+      fields.forEach(f => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'form-field';
+        const label = document.createElement('label');
+        label.textContent = f.label + (f.required ? ' *' : '');
+        label.setAttribute('for', 'r_'+f.name);
+        const input = document.createElement('input');
+        input.id = 'r_' + f.name;
+        input.name = f.name;
+        input.type = f.type;
+        input.placeholder = f.type === 'email' ? 'you@company.com' : '';
+        if(f.required) input.setAttribute('required', '');
+        wrapper.appendChild(label);
+        wrapper.appendChild(input);
+        roleFieldsContainer.appendChild(wrapper);
+      });
+
+      // show form
+      chooseArea.style.display = 'none';
+      roleFormArea.style.display = 'block';
+
+      // set dataset role on form for submission handler
+      roleRegisterForm.dataset.role = role;
+    }
+
+    function backToRoleChoose(){
+      roleFormArea.style.display = 'none';
+      chooseArea.style.display = 'block';
+      roleFieldsContainer.innerHTML = '';
+      roleRegisterForm.reset && roleRegisterForm.reset();
+    }
+
+    roleRegisterForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const role = roleRegisterForm.dataset.role || 'user';
+      // Basic validation: required inputs must be filled
+      const requiredMissing = Array.from(roleRegisterForm.querySelectorAll('[required]')).some(i => !i.value.trim());
+      if(requiredMissing){
+        toast('Please fill required fields.', 'error');
+        return;
+      }
+      // simulate register success
+      closeRegister();
+      toast('Registered successfully as ' + role.charAt(0).toUpperCase() + role.slice(1) + '. Check email to verify.', 'success');
+    });
+
+    /* -------------------------
+       small helpers for closing modals on escape or click outside
+       ------------------------- */
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        closeLogin();
+        closeRegister();
+      }
+    });
+
+    // click outside modal to close
+    document.querySelectorAll('.backdrop').forEach(back => {
+      back.addEventListener('click', function(e){
+        if(e.target === back){
+          back.style.display = 'none';
+        }
+      });
+    });
+
+    /* Simple accessibility focus trap on modals (lightweight) */
+    (function(){
+      const focusable = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      function trap(modal){
+        if(!modal) return;
+        const nodes = modal.querySelectorAll(focusable);
+        if(nodes.length) nodes[0].focus();
+      }
+      ['loginModal','registerModal'].forEach(id => {
+        const el = document.getElementById(id);
+        if(!el) return;
+        el.addEventListener('transitionend', ()=> trap(el));
+      });
+    })();
+
+  </script>
+</body>
+</html>
