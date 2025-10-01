@@ -1681,8 +1681,9 @@ if (data.success) {
                 setTimeout(() => {
                     registerModal.classList.remove('active');
                     // Redirect based on role
-                    window.location.href = `/dashboard/${formData.role}`;
-                }, 2000);
+        localStorage.setItem('commerce360_token', data.token);
+        window.location.href = 'dashboard.html';
+                    }, 2000);
             } else {
                 showNotification(result.message || 'Registration failed. Please try again.', 'error');
             }
